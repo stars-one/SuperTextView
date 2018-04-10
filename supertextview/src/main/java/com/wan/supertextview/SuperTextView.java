@@ -25,7 +25,7 @@ public class SuperTextView extends AppCompatTextView {
     private int count=1;
     private String signal;
     private int typeStartTime,typeTime;
-   private boolean openAudoHide;
+   private boolean openAudoHide = false;
 
     public SuperTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -42,7 +42,7 @@ public class SuperTextView extends AppCompatTextView {
         }
         typeStartTime = typearray.getInt(R.styleable.SuperTextView_typeStartTime,400);
         typeTime = typearray.getInt(R.styleable.SuperTextView_typeTime,500);
-        openAudoHide = typearray.getBoolean(R.styleable.SuperTextView_OpenAutoHide,false);
+
 
         setText(text);
         typearray.recycle();
@@ -102,7 +102,7 @@ public class SuperTextView extends AppCompatTextView {
      * @param duration 经过多少秒消失
      */
     public void hide(View v,int duration){
-
+        openAudoHide = true;
         ViewGroup viewgroup =(ViewGroup)v;
         LayoutTransition transition = new LayoutTransition();
 
