@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="SuperTextView">
-    <attr name="text" format="string"/>
-    <attr name="OpenTypeAudio" format="boolean"/>
-    <attr name="typeAudio" format="reference"/>
-    <attr name="typeSignal" format="string"/>
-    <attr name="typeStartTime" format="integer"/>
-    <attr name="typeTime" format="integer"/>
-    <attr name="OpenAutoHide" format="boolean"/>
-    <attr name="AutoHideTime" format="integer"/>
+        <attr name="text" format="string"/>
+        <attr name="typeSignal" format="string"/>
+        <attr name="typeStartTime" format="integer"/>
+        <attr name="typeTime" format="integer"/>
     </declare-styleable>
 </resources>

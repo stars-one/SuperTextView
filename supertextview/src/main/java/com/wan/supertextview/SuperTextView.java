@@ -3,7 +3,6 @@ package com.wan.supertextview;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
@@ -26,8 +25,8 @@ public class SuperTextView extends AppCompatTextView {
     private int count=1;
     private String signal;
     private int typeStartTime,typeTime;
-    private boolean openAudio;
-    private MediaPlayer player;
+   private boolean openAudoHide;
+
     public SuperTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context,attrs);
@@ -43,7 +42,8 @@ public class SuperTextView extends AppCompatTextView {
         }
         typeStartTime = typearray.getInt(R.styleable.SuperTextView_typeStartTime,400);
         typeTime = typearray.getInt(R.styleable.SuperTextView_typeTime,500);
-        openAudio = typearray.getBoolean(R.styleable.SuperTextView_OpenTypeAudio,false);
+        openAudoHide = typearray.getBoolean(R.styleable.SuperTextView_OpenAutoHide,false);
+
         setText(text);
         typearray.recycle();
 
@@ -61,18 +61,20 @@ public class SuperTextView extends AppCompatTextView {
                         if (text.length()!=0){
 
                             if (count!=text.length()+1){
-                                openAudio(openAudio);
+
                                 setText(text.substring(0,count)+signal);
                                 postInvalidate();
                                 count++;
                             }else{
                                 setText(text.substring(0,count-1));
-                                player.pause();
-                                player.stop();
-                                player.release();
                                 postInvalidate();
                                 count=1;
-                                setVisibility(GONE);
+
+                                if (openAudoHide){
+
+                                    setVisibility(GONE);
+                                }
+
                                 timer.cancel();
                             }
                         }
@@ -81,23 +83,6 @@ public class SuperTextView extends AppCompatTextView {
                 });
             }
         },typeStartTime,typeTime);
-    }
-
-    private void openAudio(boolean openAudio) {
-        if (openAudio){
-            player = MediaPlayer.create(context,R.raw.type);
-
-
-            player.start();
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-
-                    player.start();
-                    player.setLooping(true);
-                }
-            });
-        }
     }
 
     /**
