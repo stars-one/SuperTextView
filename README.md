@@ -1,6 +1,7 @@
 # SuperTextView
 有打字机效果的TextView封装
-[中文文档]（http://www.cnblogs.com/kexing/p/8779286.html）
+***
+[中文文档](http://www.cnblogs.com/kexing/p/8779286.html)
 ## Usage 
   1. Add the JitPack repository to your build file
   ```	allprojects {
